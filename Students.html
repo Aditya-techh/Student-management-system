@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Management System</title>
+</head>
+
+<body style="margin:0; font-family:Arial, Helvetica, sans-serif; background:#f4f6f9;">
+
+    <!-- Navigation -->
+    <nav style="background:#0d6efd; color:white; padding:15px 40px; display:flex; justify-content:space-between; align-items:center;">
+
+        <a href="#" style="color:white; text-decoration:none; font-size:24px; font-weight:bold;">
+            Student Management System
+        </a>
+
+        <div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex;">
+                <li>
+                    <a th:href="@{Students}"
+                       style="color:white; text-decoration:none; font-size:18px;">
+                        Student Management
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <!-- Main Container -->
+    <div style="width:90%; margin:40px auto;">
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+
+          <h2 style="color:#333; text-align:center;">Student List</h2>
+
+            <a th:href="@{Students/new}"
+               style="background:#198754; color:white; text-decoration:none; padding:10px 20px; border-radius:5px; font-weight:bold;">
+                + Add Student
+            </a>
+
+        </div>
+
+        <!-- Table -->
+        <table style="width:100%; border-collapse:collapse; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+
+            <thead>
+                <tr style="background:#0d6efd; color:white;">
+                    <th style="padding:15px; border:1px solid #ddd;">First Name</th>
+                    <th style="padding:15px; border:1px solid #ddd;">Last Name</th>
+                    <th style="padding:15px; border:1px solid #ddd;">Email</th>
+                    <th style="padding:15px; border:1px solid #ddd;">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr th:each="student : ${Students}" style="text-align:center;">
+
+                    <td style="padding:12px; border:1px solid #ddd;"
+                        th:text="${student.firstName}"></td>
+
+                    <td style="padding:12px; border:1px solid #ddd;"
+                        th:text="${student.lastName}"></td>
+
+                    <td style="padding:12px; border:1px solid #ddd;"
+                        th:text="${student.email}"></td>
+                        
+                      <td style="padding:12px; border:1px solid #ddd; text-align:center;">
+
+    <a th:href="@{/students/edit/{id}(id=${student.id})}"
+       style="
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:8px 18px;
+            border-radius:8px;
+            font-size:14px;
+            font-weight:600;
+            display:inline-block;
+            margin-right:8px;
+       ">
+        Update
+    </a>
+    <a th:href="@{/students/{id}(id=${student.id})}"
+       style="
+            text-decoration:none;
+            background:#dc3545;
+            color:white;
+            padding:8px 18px;
+            border-radius:8px;
+            font-size:14px;
+            font-weight:600;
+            display:inline-block;
+       ">
+        Delete
+    </a>
+
+</td>
+                       
+    
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+</html>
